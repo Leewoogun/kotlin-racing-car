@@ -1,7 +1,7 @@
 package view
 
 import constant.INPUT_CAR_NAME_MESSAGE
-import constant.NAME_LENGTH_EXCEPTION_MESSAGE
+import constant.TRY_GAME_COUNT_MESSAGE
 
 class OutputView {
     fun printInputCarName(){
@@ -10,5 +10,9 @@ class OutputView {
 
     fun printExceptionMessage(message : String){
         println(message)
+    }
+
+    fun printTryNumber(){
+        println(TRY_GAME_COUNT_MESSAGE)
     }
 }

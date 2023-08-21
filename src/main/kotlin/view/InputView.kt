@@ -5,4 +5,8 @@ class InputView {
         return readlnOrNull()?.split(",")
     }
 
+    fun inputTryNumber(): String?{
+        return readlnOrNull()
+    }
+
 }

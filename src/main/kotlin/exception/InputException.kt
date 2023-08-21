@@ -3,7 +3,7 @@ package exception
 import constant.NAME_LENGTH_EXCEPTION_MESSAGE
 import constant.NULL_EXCEPTION_MESSAGE
 
-class InputException(val cars: List<String>?) : Exception(){
+class InputException(private val cars: List<String>?) : Exception(){
 
     init {
         checkInputException()
@@ -13,6 +13,7 @@ class InputException(val cars: List<String>?) : Exception(){
         checkNameNull()
         checkCarLengthCOMMA()
     }
+
     private fun checkNameNull(){
         cars?.let{
             for (car in cars){
@@ -36,4 +37,6 @@ class InputException(val cars: List<String>?) : Exception(){
             throw IllegalArgumentException(NAME_LENGTH_EXCEPTION_MESSAGE)
         }
     }
+
+
 }
