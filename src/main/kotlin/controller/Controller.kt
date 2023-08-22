@@ -2,6 +2,8 @@ package controller
 
 import exception.InputException
 import exception.TryNumberException
+import model.RacingGame
+import model.Random
 import view.InputView
 import view.OutputView
 import kotlin.IllegalArgumentException
@@ -9,9 +11,12 @@ import kotlin.IllegalArgumentException
 class Controller(private val inputView : InputView, val outputView : OutputView) {
     private lateinit var inputException: InputException
     private lateinit var tryNumberException : TryNumberException
-    fun start(){
-        inputCarName()
-        inputTryNumber()
+
+    fun run(){
+        val cars = inputCarName()
+        var tryNumber = inputTryNumber()
+        gameResult(cars, tryNumber)
+        winner()
     }
 
     private fun inputCarName() : List<String>?{
@@ -22,7 +27,7 @@ class Controller(private val inputView : InputView, val outputView : OutputView)
                 val cars = inputView.inputCarName()
                 inputException = InputException(cars)
                 return cars
-            } catch (e: NumberFormatException){
+            } catch (e: IllegalArgumentException){
                 outputView.printExceptionMessage(e.message.toString()) // String? -> String으로 변환
             }
         }
@@ -33,7 +38,7 @@ class Controller(private val inputView : InputView, val outputView : OutputView)
 
         while (true){
             try {
-                val tryNumber = inputView.inputTryNumber()
+                var tryNumber = inputView.inputTryNumber()
                 tryNumberException = TryNumberException(tryNumber)
                 return tryNumber!!.toInt()
             } catch (e: IllegalArgumentException){
@@ -42,8 +47,16 @@ class Controller(private val inputView : InputView, val outputView : OutputView)
         }
     }
 
-    private fun gameResult(){
+    private fun gameResult(cars: List<String>?, tryNumber: Int){
+        outputView.printGameResultMessage()
+        val racingGame = RacingGame(cars)
+        var tryGame = tryNumber
 
+        while (tryGame > 0){
+            racingGame.playGame()
+            outputView.printGame(racingGame.getCarList())
+            tryGame--
+        }
     }
 
     private fun winner(){

@@ -7,5 +7,5 @@ fun main(args: Array<String>) {
     val outputView = OutputView()
     val controller = Controller(inputView, outputView)
 
-    controller.start()
+    controller.run()
 }

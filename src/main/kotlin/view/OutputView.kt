@@ -1,7 +1,9 @@
 package view
 
+import constant.GAME_RESULT_MESSAGE
 import constant.INPUT_CAR_NAME_MESSAGE
 import constant.TRY_GAME_COUNT_MESSAGE
+import model.CarDto
 
 class OutputView {
     fun printInputCarName(){
@@ -14,5 +16,16 @@ class OutputView {
 
     fun printTryNumber(){
         println(TRY_GAME_COUNT_MESSAGE)
+    }
+
+    fun printGameResultMessage(){
+        println(GAME_RESULT_MESSAGE)
+    }
+
+    fun printGame(carList: List<CarDto>){
+        for (car in carList){
+            println(car.name + "-".repeat(car.position))
+        }
+        println()
     }
 }
