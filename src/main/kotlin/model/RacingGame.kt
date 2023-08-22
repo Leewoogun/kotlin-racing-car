@@ -25,6 +25,19 @@ class RacingGame(private val cars: List<String>?) {
         return carList
     }
 
+    fun getWinner() : MutableList<String>{
+        val winnerList = mutableListOf<String>()
+        val maxPosition = findMaxPosition()
+
+        for (car in carList){
+            if (car.position == maxPosition){
+                winnerList.add(car.name)
+            }
+        }
+
+        return winnerList
+    }
+
     private fun move(){
         for (car in carList){
             if (checkCanMove()){
@@ -37,6 +50,16 @@ class RacingGame(private val cars: List<String>?) {
         val randomNum = Random().makeRandomNumber()
 
         return randomNum > 4
+    }
+
+    private fun findMaxPosition() : Int{
+        var max = 0
+
+        for (car in carList){
+            max = Math.max(car.position, max)
+        }
+
+        return max
     }
 
 }

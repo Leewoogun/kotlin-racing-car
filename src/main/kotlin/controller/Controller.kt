@@ -11,6 +11,7 @@ import kotlin.IllegalArgumentException
 class Controller(private val inputView : InputView, val outputView : OutputView) {
     private lateinit var inputException: InputException
     private lateinit var tryNumberException : TryNumberException
+    private lateinit var racingGame: RacingGame
 
     fun run(){
         val cars = inputCarName()
@@ -49,7 +50,8 @@ class Controller(private val inputView : InputView, val outputView : OutputView)
 
     private fun gameResult(cars: List<String>?, tryNumber: Int){
         outputView.printGameResultMessage()
-        val racingGame = RacingGame(cars)
+        racingGame = RacingGame(cars)
+
         var tryGame = tryNumber
 
         while (tryGame > 0){
@@ -60,6 +62,7 @@ class Controller(private val inputView : InputView, val outputView : OutputView)
     }
 
     private fun winner(){
-
+        val winners = racingGame.getWinner()
+        outputView.printWinner(winners)
     }
 }

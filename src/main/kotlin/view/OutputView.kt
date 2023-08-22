@@ -3,6 +3,7 @@ package view
 import constant.GAME_RESULT_MESSAGE
 import constant.INPUT_CAR_NAME_MESSAGE
 import constant.TRY_GAME_COUNT_MESSAGE
+import constant.WINNER_MESSAGE
 import model.CarDto
 
 class OutputView {
@@ -24,8 +25,12 @@ class OutputView {
 
     fun printGame(carList: List<CarDto>){
         for (car in carList){
-            println(car.name + "-".repeat(car.position))
+            println(car.name + " : " + "-".repeat(car.position))
         }
         println()
+    }
+
+    fun printWinner(winnerList : List<String>){
+        println(winnerList.joinToString(",") + WINNER_MESSAGE)
     }
 }
