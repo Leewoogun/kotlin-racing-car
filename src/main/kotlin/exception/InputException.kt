@@ -47,6 +47,4 @@ class InputException(private val cars: List<String>?) : Exception(){
             throw IllegalArgumentException(NAME_LENGTH_EXCEPTION_MESSAGE)
         }
     }
-
-
 }
