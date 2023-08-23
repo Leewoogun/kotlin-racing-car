@@ -1,5 +1,6 @@
 package exception
 
+import constant.NAME_DUPLICATION_EXCEPTION_MESSAGE
 import constant.NAME_LENGTH_EXCEPTION_MESSAGE
 import constant.NULL_EXCEPTION_MESSAGE
 
@@ -12,6 +13,7 @@ class InputException(private val cars: List<String>?) : Exception(){
     private fun checkInputException(){
         checkNameNull()
         checkCarLengthCOMMA()
+        checkNameDuplicate()
     }
 
     private fun checkNameNull(){
@@ -29,6 +31,14 @@ class InputException(private val cars: List<String>?) : Exception(){
             for (car in cars){
                 checkNameLength(car)
             }
+        }
+    }
+
+    private fun checkNameDuplicate(){
+        val carSet : Set<String> = cars!!.toSet()
+
+        if (carSet.size != cars.size){
+            throw IllegalArgumentException(NAME_DUPLICATION_EXCEPTION_MESSAGE)
         }
     }
 
